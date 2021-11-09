@@ -23,6 +23,10 @@ class ViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: 100, height: 300)
+        
+        collectionView.collectionViewLayout = layout
         
         
     }
@@ -71,6 +75,13 @@ extension ViewController: UICollectionViewDataSource {
         return cell
     }
     
+}
+
+extension ViewController: UICollectionViewDelegateFlowLayout{
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 100, height: 300)
+    }
     
 }
 
