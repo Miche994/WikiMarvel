@@ -7,51 +7,57 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    private static let kSomeString = "You Tapped me!"
+    private static let cellWidth = 150
+    private static let cellHeight = 200
+    private static let orizontalInset: CGFloat = 20
+    private static let verticalInset: CGFloat = 10
     
+    private let charactersList = MarvelCharacterDataSource().characters
+    private let imageDownloader = Downloader()
 
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet private weak var collectionView: UICollectionView!
     
-    //let charactersList: [MarvelCharacter] = MarvelCharacterDataSource.init().characters
+   
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         collectionView.register(MyCollectionViewCell.nib(), forCellWithReuseIdentifier: MyCollectionViewCell.identifier)
-
         collectionView.delegate = self
         collectionView.dataSource = self
         
+    
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 100, height: 300)
+        layout.itemSize = CGSize(width: ViewController.cellWidth, height: ViewController.cellHeight)
         
         collectionView.collectionViewLayout = layout
-        
+        collectionView!.contentInset = UIEdgeInsets(top: ViewController.verticalInset, left: ViewController.orizontalInset, bottom: ViewController.verticalInset, right: ViewController.orizontalInset)
         
     }
     
-  
-
-
-}
-
-extension ViewController: UICollectionViewDelegate {
+    // MARK: - UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //collectionView.deselectItem(at: indexPath, animated: true)
         
-        print("You tapped me")
-    }
-    
-    
-}
+        if let cell = collectionView.cellForItem(at: indexPath) as? MyCollectionViewCell {
+            print(cell.nameLabel.text!)
+        }
 
-extension ViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //return charactersList.count
-        return 12
+        
     }
+
+    
+    // MARK: - UICollectionViewDataSource
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return charactersList.count
+        
+    }
+    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyCollectionViewCell.identifier, for: indexPath) as! MyCollectionViewCell
@@ -59,29 +65,27 @@ extension ViewController: UICollectionViewDataSource {
         
         /*URLSession.shared.dataTask(with: URL(string: charactersList[indexPath.row].imageURL)!) {
             data, response, error in
-            guard let data = data,
-                  let image = UIImage(data: data) else {
-                      return
+            guard let data = data, let image = UIImage(data: data) else {
+                return
             }
-            DispatchQueue.main.async {
-                cell.imageView.image = image}
-            }.resume()
-        
+            DispatchQueue.main.async { [self] in
+                cell.configure(with: image, name: charactersList[indexPath.row].name)
+            }
+        }.resume()
         */
-        //cell.imageView.image = UIImage(named: "IronManimage")
         
-        cell.configure(with: UIImage(named: "IronManImage")!)
+        
+        // Image downloading
+        imageDownloader.downloadDataFromURL(urlString: charactersList[indexPath.row].imageURL, nameCharacters: charactersList[indexPath.row].name, cell: cell)
+        
         
         return cell
     }
     
-}
-
-extension ViewController: UICollectionViewDelegateFlowLayout{
+    // MARK: - UICollectionViewDelegateFlowLayout
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100, height: 300)
+        return CGSize(width: ViewController.cellWidth, height: ViewController.cellHeight)
     }
-    
 }
 

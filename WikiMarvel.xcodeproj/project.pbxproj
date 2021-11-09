@@ -16,6 +16,7 @@
 		F20B3F22273944A100E41A2D /* MyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20B3F20273944A100E41A2D /* MyCollectionViewCell.swift */; };
 		F20B3F23273944A100E41A2D /* MyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F20B3F21273944A100E41A2D /* MyCollectionViewCell.xib */; };
 		F20B3F25273972A200E41A2D /* CharactersData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20B3F24273972A200E41A2D /* CharactersData.swift */; };
+		F20B3F29273AC4C800E41A2D /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20B3F28273AC4C800E41A2D /* Downloader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		F20B3F20273944A100E41A2D /* MyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCollectionViewCell.swift; sourceTree = "<group>"; };
 		F20B3F21273944A100E41A2D /* MyCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyCollectionViewCell.xib; sourceTree = "<group>"; };
 		F20B3F24273972A200E41A2D /* CharactersData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersData.swift; sourceTree = "<group>"; };
+		F20B3F28273AC4C800E41A2D /* Downloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 		F20B3F0B273937E600E41A2D /* WikiMarvel */ = {
 			isa = PBXGroup;
 			children = (
+				F20B3F27273AC46700E41A2D /* Utility */,
 				F20B3F26273972BE00E41A2D /* Data */,
 				F20B3F0C273937E600E41A2D /* AppDelegate.swift */,
 				F20B3F0E273937E600E41A2D /* SceneDelegate.swift */,
@@ -82,6 +85,14 @@
 				F20B3F24273972A200E41A2D /* CharactersData.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		F20B3F27273AC46700E41A2D /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				F20B3F28273AC4C800E41A2D /* Downloader.swift */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -158,6 +169,7 @@
 			files = (
 				F20B3F11273937E600E41A2D /* ViewController.swift in Sources */,
 				F20B3F0D273937E600E41A2D /* AppDelegate.swift in Sources */,
+				F20B3F29273AC4C800E41A2D /* Downloader.swift in Sources */,
 				F20B3F22273944A100E41A2D /* MyCollectionViewCell.swift in Sources */,
 				F20B3F0F273937E600E41A2D /* SceneDelegate.swift in Sources */,
 				F20B3F25273972A200E41A2D /* CharactersData.swift in Sources */,

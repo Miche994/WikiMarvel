@@ -9,22 +9,31 @@ import UIKit
 
 class MyCollectionViewCell: UICollectionViewCell {
     
-    static let identifier = "MyCollectionViewCell"
+    public static let identifier = "MyCollectionViewCell"
+    private static let radius = 8.0
     
-    @IBOutlet var imageView: UIImageView!
+    @IBOutlet private var imageView: UIImageView!
+    
+    @IBOutlet weak var nameLabel: UILabel!
     
     
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-    }
     
-    public func configure(with image: UIImage){
-        imageView.image = image
-    }
-
-    static func nib() -> UINib {
+    public static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)
     }
+    
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        backgroundColor = .lightGray
+        layer.cornerRadius = MyCollectionViewCell.radius
+        layer.masksToBounds = true
+    }
+    
+    public func configure(with image: UIImage, name: String) {
+        imageView.image = image
+        nameLabel.text = name
+    }
+
+    
 }

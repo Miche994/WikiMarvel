@@ -5,7 +5,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
-        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -17,38 +16,58 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="WXI-U4-zhU">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="DgN-fN-l1P">
-                                    <size key="itemSize" width="128" height="128"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="m2Q-or-245">
-                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="vab-0z-loD">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </collectionViewCellContentView>
-                                    </collectionViewCell>
-                                </cells>
-                                <connections>
-                                    <outlet property="dataSource" destination="8bC-Xf-vdC" id="On9-dK-JzM"/>
-                                    <outlet property="delegate" destination="8bC-Xf-vdC" id="RNi-sO-ios"/>
-                                </connections>
-                            </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wPk-XR-iIz" userLabel="TopView">
+                                <rect key="frame" x="0.0" y="44" width="414" height="184"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MarvelLogo" translatesAutoresizingMaskIntoConstraints="NO" id="7Eb-8s-iFN">
+                                        <rect key="frame" x="50" y="0.0" width="314" height="184"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="7Eb-8s-iFN" secondAttribute="trailing" constant="50" id="1tS-wb-6pl"/>
+                                    <constraint firstAttribute="bottom" secondItem="7Eb-8s-iFN" secondAttribute="bottom" id="RkR-yu-GUR"/>
+                                    <constraint firstItem="7Eb-8s-iFN" firstAttribute="top" secondItem="wPk-XR-iIz" secondAttribute="top" id="auJ-YJ-rHk"/>
+                                    <constraint firstItem="7Eb-8s-iFN" firstAttribute="leading" secondItem="wPk-XR-iIz" secondAttribute="leading" constant="50" id="gZk-hT-wrx"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mhl-nP-izc" userLabel="BottomView">
+                                <rect key="frame" x="0.0" y="228" width="414" height="668"/>
+                                <subviews>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="WXI-U4-zhU">
+                                        <rect key="frame" x="8" y="8" width="398" height="618"/>
+                                        <color key="backgroundColor" systemColor="labelColor"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="DgN-fN-l1P">
+                                            <size key="itemSize" width="248" height="272"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="8bC-Xf-vdC" id="On9-dK-JzM"/>
+                                            <outlet property="delegate" destination="8bC-Xf-vdC" id="RNi-sO-ios"/>
+                                        </connections>
+                                    </collectionView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailingMargin" secondItem="WXI-U4-zhU" secondAttribute="trailing" id="5R2-4K-BBU"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="WXI-U4-zhU" secondAttribute="bottom" id="Wau-69-qNJ"/>
+                                    <constraint firstItem="WXI-U4-zhU" firstAttribute="top" secondItem="mhl-nP-izc" secondAttribute="topMargin" id="fSD-Xr-E8j"/>
+                                    <constraint firstItem="WXI-U4-zhU" firstAttribute="leading" secondItem="mhl-nP-izc" secondAttribute="leadingMargin" id="zPb-eO-8PR"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="WXI-U4-zhU" secondAttribute="trailing" id="MxT-Wz-XJg"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="WXI-U4-zhU" secondAttribute="bottom" id="XjG-Sr-ebb"/>
-                            <constraint firstItem="WXI-U4-zhU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="qsT-H9-U2p"/>
-                            <constraint firstItem="WXI-U4-zhU" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="r09-hx-nOF"/>
+                            <constraint firstItem="mhl-nP-izc" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="228" id="9FB-0n-RhI"/>
+                            <constraint firstItem="mhl-nP-izc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Ds7-0H-NFj"/>
+                            <constraint firstAttribute="bottom" secondItem="mhl-nP-izc" secondAttribute="bottom" id="GQn-hJ-ovf"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wPk-XR-iIz" secondAttribute="trailing" id="LKI-ad-fw1"/>
+                            <constraint firstItem="mhl-nP-izc" firstAttribute="top" secondItem="wPk-XR-iIz" secondAttribute="bottom" id="U6Q-Yp-xnt"/>
+                            <constraint firstItem="wPk-XR-iIz" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="eQg-W1-ug9"/>
+                            <constraint firstItem="wPk-XR-iIz" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="mUD-6N-YsQ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="mhl-nP-izc" secondAttribute="trailing" id="uun-sg-gWw"/>
                         </constraints>
                     </view>
                     <connections>
@@ -57,12 +76,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="154" y="-380"/>
+            <point key="canvasLocation" x="153.62318840579712" y="-380.35714285714283"/>
         </scene>
     </scenes>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        <image name="MarvelLogo" width="640" height="257.5"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>
