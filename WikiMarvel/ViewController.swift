@@ -16,6 +16,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     private let charactersList = MarvelCharacterDataSource().characters
     private let imageDownloader = Downloader()
+    
+    private let imageCacher = ImageChacher()
 
     @IBOutlet private weak var collectionView: UICollectionView!
     
@@ -26,6 +28,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         super.viewDidLoad()
         
         collectionView.register(MyCollectionViewCell.nib(), forCellWithReuseIdentifier: MyCollectionViewCell.identifier)
+        
         collectionView.delegate = self
         collectionView.dataSource = self
         
@@ -36,6 +39,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         collectionView.collectionViewLayout = layout
         collectionView!.contentInset = UIEdgeInsets(top: ViewController.verticalInset, left: ViewController.orizontalInset, bottom: ViewController.verticalInset, right: ViewController.orizontalInset)
         
+        
     }
     
     // MARK: - UICollectionViewDelegate
@@ -45,9 +49,15 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         if let cell = collectionView.cellForItem(at: indexPath) as? MyCollectionViewCell {
             print(cell.nameLabel.text!)
-        }
-
         
+        
+            if let vc = storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController {
+            
+                vc.configure(image: cell.imageView.image!, name: cell.nameLabel.text!, description: cell.descriptionCharacter)
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            
+        }
     }
 
     
@@ -62,25 +72,33 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyCollectionViewCell.identifier, for: indexPath) as! MyCollectionViewCell
         
+        cell.makeEmpty()
+
         
-        /*URLSession.shared.dataTask(with: URL(string: charactersList[indexPath.row].imageURL)!) {
-            data, response, error in
-            guard let data = data, let image = UIImage(data: data) else {
-                return
+        // Cached image is used if present inside imageCacher else a new image is downloaded and cached
+        
+        if let cachedImage = imageCacher.newChachedImage(index: indexPath) {
+                    
+            cell.configure(with: cachedImage, name: self.charactersList[indexPath.row].name, description: self.charactersList[indexPath.row].description)
+            
+        } else {
+        
+            imageDownloader.newImageDownload(urlString: charactersList[indexPath.row].imageURL) { [self]
+                
+                image, error in
+                if(image != nil) {
+                    cell.configure(with: image!, name: self.charactersList[indexPath.row].name, description: self.charactersList[indexPath.row].description)
+                    imageCacher.addImageForCaching(index: indexPath, image: image!)
+                }
+                
             }
-            DispatchQueue.main.async { [self] in
-                cell.configure(with: image, name: charactersList[indexPath.row].name)
-            }
-        }.resume()
-        */
+            
+        }
         
-        
-        // Image downloading
-        imageDownloader.downloadDataFromURL(urlString: charactersList[indexPath.row].imageURL, nameCharacters: charactersList[indexPath.row].name, cell: cell)
-        
-        
+
         return cell
     }
+    
     
     // MARK: - UICollectionViewDelegateFlowLayout
     
