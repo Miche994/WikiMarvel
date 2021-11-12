@@ -17,7 +17,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     private let charactersList = MarvelCharacterDataSource().characters
     private let imageDownloader = Downloader()
     
-    private let imageCacher = ImageChacher()
+    private let imageCacher = ImageCacher()
 
     @IBOutlet private weak var collectionView: UICollectionView!
     
@@ -72,12 +72,11 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyCollectionViewCell.identifier, for: indexPath) as! MyCollectionViewCell
         
-        cell.makeEmpty()
 
         
         // Cached image is used if present inside imageCacher else a new image is downloaded and cached
         
-        if let cachedImage = imageCacher.newChachedImage(index: indexPath) {
+        if let cachedImage = imageCacher.newCachedImage(index: indexPath) {
                     
             cell.configure(with: cachedImage, name: self.charactersList[indexPath.row].name, description: self.charactersList[indexPath.row].description)
             

@@ -9,8 +9,11 @@ import UIKit
 import Foundation
 
 class Downloader {
-
     
+    private static let setSomeDomain = "Somedomain"
+    private static let code = 101
+    
+
     func newImageDownload(urlString: String, completion: @escaping (UIImage?, Error?) -> Void) {
         URLSession.shared.dataTask(with: URL(string: urlString)!) {
             data, response, error in
@@ -22,7 +25,7 @@ class Downloader {
             }
             guard let data = data, let image = UIImage(data: data) else {
                 DispatchQueue.main.async {
-                    completion(nil, NSError(domain: "Somedomain", code: 101, userInfo: nil))
+                    completion(nil, NSError(domain: Downloader.setSomeDomain, code: Downloader.code, userInfo: nil))
                 }
                 return
             }
@@ -31,4 +34,5 @@ class Downloader {
             }
         }.resume()
     }
+    
 }

@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class ImageChacher {
+class ImageCacher {
     
     private let cache = NSCache<NSNumber, UIImage>()
     
@@ -24,7 +24,7 @@ class ImageChacher {
     
     // MARK: If present return cached image
     
-    public func newChachedImage(index indexPath: IndexPath) -> UIImage? {
+    public func newCachedImage(index indexPath: IndexPath) -> UIImage? {
         let itemNumber = NSNumber(value: indexPath.item)
         
         if let cachedImage = self.cache.object(forKey: itemNumber) {

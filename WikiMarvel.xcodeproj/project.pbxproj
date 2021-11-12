@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		F20B3F0D273937E600E41A2D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20B3F0C273937E600E41A2D /* AppDelegate.swift */; };
-		F20B3F0F273937E600E41A2D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20B3F0E273937E600E41A2D /* SceneDelegate.swift */; };
 		F20B3F11273937E600E41A2D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20B3F10273937E600E41A2D /* ViewController.swift */; };
 		F20B3F14273937E600E41A2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F20B3F12273937E600E41A2D /* Main.storyboard */; };
 		F20B3F16273937EA00E41A2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F20B3F15273937EA00E41A2D /* Assets.xcassets */; };
@@ -17,14 +16,13 @@
 		F20B3F23273944A100E41A2D /* MyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F20B3F21273944A100E41A2D /* MyCollectionViewCell.xib */; };
 		F20B3F25273972A200E41A2D /* CharactersData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20B3F24273972A200E41A2D /* CharactersData.swift */; };
 		F20B3F29273AC4C800E41A2D /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20B3F28273AC4C800E41A2D /* Downloader.swift */; };
-		F20B3F30273C0C4700E41A2D /* ImageChacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20B3F2F273C0C4700E41A2D /* ImageChacher.swift */; };
+		F20B3F30273C0C4700E41A2D /* ImageCacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20B3F2F273C0C4700E41A2D /* ImageCacher.swift */; };
 		F20B3F34273C337100E41A2D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20B3F33273C337100E41A2D /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		F20B3F09273937E600E41A2D /* WikiMarvel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WikiMarvel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F20B3F0C273937E600E41A2D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F20B3F0E273937E600E41A2D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		F20B3F10273937E600E41A2D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F20B3F13273937E600E41A2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F20B3F15273937EA00E41A2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -34,7 +32,7 @@
 		F20B3F21273944A100E41A2D /* MyCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyCollectionViewCell.xib; sourceTree = "<group>"; };
 		F20B3F24273972A200E41A2D /* CharactersData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersData.swift; sourceTree = "<group>"; };
 		F20B3F28273AC4C800E41A2D /* Downloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
-		F20B3F2F273C0C4700E41A2D /* ImageChacher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageChacher.swift; sourceTree = "<group>"; };
+		F20B3F2F273C0C4700E41A2D /* ImageCacher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacher.swift; sourceTree = "<group>"; };
 		F20B3F33273C337100E41A2D /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -68,18 +66,14 @@
 		F20B3F0B273937E600E41A2D /* WikiMarvel */ = {
 			isa = PBXGroup;
 			children = (
+				F20B3F1A273937EA00E41A2D /* Info.plist */,
+				F20B3F0C273937E600E41A2D /* AppDelegate.swift */,
+				F20B3F12273937E600E41A2D /* Main.storyboard */,
+				F29C684D273E892400F85F6E /* Navigation */,
 				F20B3F27273AC46700E41A2D /* Utility */,
 				F20B3F26273972BE00E41A2D /* Data */,
-				F20B3F0C273937E600E41A2D /* AppDelegate.swift */,
-				F20B3F0E273937E600E41A2D /* SceneDelegate.swift */,
-				F20B3F10273937E600E41A2D /* ViewController.swift */,
-				F20B3F33273C337100E41A2D /* DetailViewController.swift */,
-				F20B3F12273937E600E41A2D /* Main.storyboard */,
 				F20B3F15273937EA00E41A2D /* Assets.xcassets */,
 				F20B3F17273937EA00E41A2D /* LaunchScreen.storyboard */,
-				F20B3F1A273937EA00E41A2D /* Info.plist */,
-				F20B3F20273944A100E41A2D /* MyCollectionViewCell.swift */,
-				F20B3F21273944A100E41A2D /* MyCollectionViewCell.xib */,
 			);
 			path = WikiMarvel;
 			sourceTree = "<group>";
@@ -96,9 +90,28 @@
 			isa = PBXGroup;
 			children = (
 				F20B3F28273AC4C800E41A2D /* Downloader.swift */,
-				F20B3F2F273C0C4700E41A2D /* ImageChacher.swift */,
+				F20B3F2F273C0C4700E41A2D /* ImageCacher.swift */,
 			);
 			path = Utility;
+			sourceTree = "<group>";
+		};
+		F29C684D273E892400F85F6E /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				F29C684E273E893300F85F6E /* Views */,
+				F20B3F10273937E600E41A2D /* ViewController.swift */,
+				F20B3F33273C337100E41A2D /* DetailViewController.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		F29C684E273E893300F85F6E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F20B3F20273944A100E41A2D /* MyCollectionViewCell.swift */,
+				F20B3F21273944A100E41A2D /* MyCollectionViewCell.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,9 +190,8 @@
 				F20B3F0D273937E600E41A2D /* AppDelegate.swift in Sources */,
 				F20B3F29273AC4C800E41A2D /* Downloader.swift in Sources */,
 				F20B3F22273944A100E41A2D /* MyCollectionViewCell.swift in Sources */,
-				F20B3F0F273937E600E41A2D /* SceneDelegate.swift in Sources */,
 				F20B3F25273972A200E41A2D /* CharactersData.swift in Sources */,
-				F20B3F30273C0C4700E41A2D /* ImageChacher.swift in Sources */,
+				F20B3F30273C0C4700E41A2D /* ImageCacher.swift in Sources */,
 				F20B3F34273C337100E41A2D /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -12,11 +12,11 @@ class MyCollectionViewCell: UICollectionViewCell {
     public static let identifier = "MyCollectionViewCell"
     private static let radius = 8.0
     
-    @IBOutlet var imageView: UIImageView!   
+    @IBOutlet private(set) var imageView: UIImageView!
+    @IBOutlet private(set) weak var nameLabel: UILabel!
     
-    @IBOutlet weak var nameLabel: UILabel!
+    private(set) var descriptionCharacter: String!
     
-    var descriptionCharacter: String = ""
     
     public static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)
@@ -36,9 +36,10 @@ class MyCollectionViewCell: UICollectionViewCell {
         descriptionCharacter = description
     }
 
-    public func makeEmpty(){
+    override func prepareForReuse() {
+        super.prepareForReuse()
         imageView.image = nil
-        nameLabel.text = "Label"
+        nameLabel.text = nil
     }
     
 }
