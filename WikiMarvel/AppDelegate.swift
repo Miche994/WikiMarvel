@@ -11,9 +11,17 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    private(set) var imageDataSource: ImageDataProvider!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ViewController") as! ViewController
+        
+        let imageDownloader = ImageDownloader()
+        let imageCacher = ImageCacher()
+        
+        imageDataSource = ImageDataProvider(downloader: imageDownloader, cacheHandler: imageCacher)
+        
+        let vc = ViewController.newInstance(dataSource: imageDataSource)
         let navVC = UINavigationController(rootViewController: vc)
         
         window = UIWindow(frame: UIScreen.main.bounds)

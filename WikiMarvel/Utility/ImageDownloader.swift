@@ -8,7 +8,7 @@
 import UIKit
 import Foundation
 
-class Downloader {
+class ImageDownloader {
     
     private static let setSomeDomain = "Somedomain"
     private static let code = 101
@@ -25,7 +25,7 @@ class Downloader {
             }
             guard let data = data, let image = UIImage(data: data) else {
                 DispatchQueue.main.async {
-                    completion(nil, NSError(domain: Downloader.setSomeDomain, code: Downloader.code, userInfo: nil))
+                    completion(nil, NSError(domain: ImageDownloader.setSomeDomain, code: ImageDownloader.code, userInfo: nil))
                 }
                 return
             }
