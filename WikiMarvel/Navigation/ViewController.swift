@@ -8,7 +8,7 @@
 import UIKit
 
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    private static let detailViewControllerIdentifier = "DetailViewController"
+    
     private static let kSomeString = "You Tapped me!"
     private static let cellWidth = 150
     private static let cellHeight = 200
@@ -51,14 +51,18 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        imageDataSource?.getMarvelImage(withURL: charactersList[indexPath.row].imageURL, forPath: indexPath, completion: { image, error in
+        imageDataSource?.getMarvelImage(withURL: charactersList[indexPath.row].imageURL, completion: { image, error in
             guard let image = image else { return }
             
-            guard let vc = self.storyboard?.instantiateViewController(withIdentifier: ViewController.detailViewControllerIdentifier) as? DetailViewController else {
+            /*guard let vc = self.storyboard?.instantiateViewController(withIdentifier: ViewController.detailViewControllerIdentifier) as? DetailViewController else {
                 return
             }
             
-            vc.configure(image: image, name: self.charactersList[indexPath.row].name, description: self.charactersList[indexPath.row].description)
+            vc.configure(image: image, name: self.charactersList[indexPath.row].name, description: self.charactersList[indexPath.row].description)*/
+            
+            guard let vc = DetailViewController.newInstace(imageCharacter: image, nameCharacter: self.charactersList[indexPath.row].name, descriptionCharacter: self.charactersList[indexPath.row].description) else {
+                return
+            }
             self.navigationController?.pushViewController(vc, animated: true)
         })
         
@@ -76,7 +80,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyCollectionViewCell.identifier, for: indexPath) as! MyCollectionViewCell
         
-        imageDataSource?.getMarvelImage(withURL: charactersList[indexPath.row].imageURL, forPath: indexPath, completion: { image, error in
+        imageDataSource?.getMarvelImage(withURL: charactersList[indexPath.row].imageURL, completion: { image, error in
             guard let image = image else { return }
             cell.configure(with: image, name: self.charactersList[indexPath.row].name, description: self.charactersList[indexPath.row].description)
         })

@@ -9,7 +9,6 @@ import UIKit
 
 protocol ImageDataSource: AnyObject {
    func getMarvelImage(withURL url: String,
-                       forPath path: IndexPath,
                        completion: @escaping (UIImage?, Error?) -> Void)
 }
 
@@ -23,24 +22,24 @@ class ImageDataProvider: ImageDataSource{
         imageCacher = cacheHandler
     }
     
-    func getMarvelImage(withURL url: String, forPath path: IndexPath, completion: @escaping (UIImage?, Error?) -> Void) {
+    func getMarvelImage(withURL url: String, completion: @escaping (UIImage?, Error?) -> Void) {
         
-        guard let cachedImage = imageCacher.newCachedImage(index: path) else {
-            downloadNewImage(withURL: url, forPath: path, completion: completion)
+        guard let cachedImage = imageCacher.newCachedImage(withURL: url) else {
+            downloadNewImage(withURL: url, completion: completion)
             return
         }
         
         completion(cachedImage, nil)
     }
     
-    private func downloadNewImage(withURL url: String, forPath path: IndexPath, completion: @escaping (UIImage?, Error?) -> Void) {
+    private func downloadNewImage(withURL url: String, completion: @escaping (UIImage?, Error?) -> Void) {
         imageDownloader.newImageDownload(urlString: url) {
             newImage, error in
             guard error == nil else {
                 completion(nil, error)
                 return
             }
-            self.imageCacher.addImageForCaching(index: path, image: newImage!)
+            self.imageCacher.addImageForCaching(withURL: url, image: newImage!)
             completion(newImage, nil)
         }
     }

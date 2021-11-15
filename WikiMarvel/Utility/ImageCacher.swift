@@ -10,25 +10,25 @@ import UIKit
 
 class ImageCacher {
     
-    private let cache = NSCache<NSNumber, UIImage>()
+    private let cache = NSCache<NSString, UIImage>()
     
     
     // MARK: new image is added for caching
     
-    public func addImageForCaching(index indexPath: IndexPath, image: UIImage) {
+    public func addImageForCaching(withURL url: String, image: UIImage) {
         
-        let itemNumber = NSNumber(value: indexPath.item)
-        self.cache.setObject(image, forKey: itemNumber)
+        let itemUrl = NSString(string: url)
+        self.cache.setObject(image, forKey: itemUrl)
     }
     
     
     // MARK: If present return cached image
     
-    public func newCachedImage(index indexPath: IndexPath) -> UIImage? {
-        let itemNumber = NSNumber(value: indexPath.item)
+    public func newCachedImage(withURL url: String) -> UIImage? {
+        let itemUrl = NSString(string: url)
         
-        if let cachedImage = self.cache.object(forKey: itemNumber) {
-            print("Cached image for item: \(itemNumber)")
+        if let cachedImage = self.cache.object(forKey: itemUrl) {
+            print("Cached image for item: \(itemUrl)")
             return cachedImage
         } else {
             return nil
