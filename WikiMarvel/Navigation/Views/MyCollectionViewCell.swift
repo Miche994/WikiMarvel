@@ -6,9 +6,9 @@
 //
 
 import UIKit
+import SDWebImage
 
 class MyCollectionViewCell: UICollectionViewCell {
-    
     public static let identifier = "MyCollectionViewCell"
     private static let radius = 8.0
     
@@ -30,8 +30,8 @@ class MyCollectionViewCell: UICollectionViewCell {
         layer.masksToBounds = true
     }
     
-    public func configure(with image: UIImage, name: String, description: String) {
-        imageView.image = image
+    public func configure(withUrl url: String, name: String, description: String) {
+        imageView.sd_setImage(with: URL(string: url), placeholderImage: UIImage(named: "placeholder.png"))
         nameLabel.text = name
         descriptionCharacter = description
     }
