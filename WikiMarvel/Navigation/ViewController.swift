@@ -12,7 +12,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     private static let kSomeString = "You Tapped me!"
     private static let cellWidth = 150
     private static let cellHeight = 200
-    private static let orizontalInset: CGFloat = 20
+    private static let horizontalInset: CGFloat = 20
     private static let verticalInset: CGFloat = 10
     
     @IBOutlet private weak var collectionView: UICollectionView!
@@ -42,7 +42,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         layout.itemSize = CGSize(width: ViewController.cellWidth, height: ViewController.cellHeight)
         
         collectionView.collectionViewLayout = layout
-        collectionView!.contentInset = UIEdgeInsets(top: ViewController.verticalInset, left: ViewController.orizontalInset, bottom: ViewController.verticalInset, right: ViewController.orizontalInset)
+        collectionView!.contentInset = UIEdgeInsets(top: ViewController.verticalInset, left: ViewController.horizontalInset, bottom: ViewController.verticalInset, right: ViewController.horizontalInset)
         
         
     }
@@ -60,7 +60,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             
             vc.configure(image: image, name: self.charactersList[indexPath.row].name, description: self.charactersList[indexPath.row].description)*/
             
-            guard let vc = DetailViewController.newInstace(imageCharacter: image, nameCharacter: self.charactersList[indexPath.row].name, descriptionCharacter: self.charactersList[indexPath.row].description) else {
+            guard let vc = DetailViewController.newInstance(imageCharacter: image, nameCharacter: self.charactersList[indexPath.row].name, descriptionCharacter: self.charactersList[indexPath.row].description) else {
                 return
             }
             self.navigationController?.pushViewController(vc, animated: true)

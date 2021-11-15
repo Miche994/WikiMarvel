@@ -18,7 +18,7 @@ class DetailViewController: UIViewController {
     private var receivedNameCharacter: String!
     private var receivedDesCharacter: String!
     
-    public static func newInstace(imageCharacter: UIImage, nameCharacter: String, descriptionCharacter: String) -> DetailViewController? {
+    public static func newInstance(imageCharacter: UIImage, nameCharacter: String, descriptionCharacter: String) -> DetailViewController? {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: DetailViewController.detailViewControllerIdentifier) as! DetailViewController
         vc.receivedImageCharacter = imageCharacter
         vc.receivedNameCharacter = nameCharacter
