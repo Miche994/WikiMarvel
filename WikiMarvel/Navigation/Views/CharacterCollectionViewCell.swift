@@ -7,26 +7,26 @@
 
 import UIKit
 
-class MyCollectionViewCell: UICollectionViewCell {
+class CharacterCollectionViewCell: UICollectionViewCell {
     
-    public static let identifier = "MyCollectionViewCell"
-    private static let radius = 8.0
+    public static let kIdentifier = "CharacterCollectionViewCell"
+    private static let kCornerRadius = 8.0
     
-    @IBOutlet private(set) var imageView: UIImageView!
-    @IBOutlet private(set) weak var nameLabel: UILabel!
+    @IBOutlet private var imageView: UIImageView!
+    @IBOutlet private weak var nameLabel: UILabel!
     
-    private(set) var descriptionCharacter: String!
+    private var descriptionCharacter: String!
     
     
     public static func nib() -> UINib {
-        return UINib(nibName: identifier, bundle: nil)
+        return UINib(nibName: Self.kIdentifier, bundle: nil)
     }
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
         backgroundColor = .lightGray
-        layer.cornerRadius = MyCollectionViewCell.radius
+        layer.cornerRadius = Self.kCornerRadius
         layer.masksToBounds = true
     }
     

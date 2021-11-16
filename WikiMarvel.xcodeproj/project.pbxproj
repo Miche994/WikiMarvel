@@ -13,12 +13,14 @@
 		F20B3F14273937E600E41A2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F20B3F12273937E600E41A2D /* Main.storyboard */; };
 		F20B3F16273937EA00E41A2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F20B3F15273937EA00E41A2D /* Assets.xcassets */; };
 		F20B3F19273937EA00E41A2D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F20B3F17273937EA00E41A2D /* LaunchScreen.storyboard */; };
-		F20B3F22273944A100E41A2D /* MyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20B3F20273944A100E41A2D /* MyCollectionViewCell.swift */; };
-		F20B3F23273944A100E41A2D /* MyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F20B3F21273944A100E41A2D /* MyCollectionViewCell.xib */; };
+		F20B3F22273944A100E41A2D /* CharacterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20B3F20273944A100E41A2D /* CharacterCollectionViewCell.swift */; };
+		F20B3F23273944A100E41A2D /* CharacterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F20B3F21273944A100E41A2D /* CharacterCollectionViewCell.xib */; };
 		F20B3F25273972A200E41A2D /* CharactersData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20B3F24273972A200E41A2D /* CharactersData.swift */; };
 		F20B3F29273AC4C800E41A2D /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20B3F28273AC4C800E41A2D /* ImageDownloader.swift */; };
 		F20B3F30273C0C4700E41A2D /* ImageCacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20B3F2F273C0C4700E41A2D /* ImageCacher.swift */; };
-		F20B3F34273C337100E41A2D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20B3F33273C337100E41A2D /* DetailViewController.swift */; };
+		F20B3F34273C337100E41A2D /* CharacterDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20B3F33273C337100E41A2D /* CharacterDetailsViewController.swift */; };
+		F296DE5C2743F4EA0049041E /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F296DE5B2743F4EA0049041E /* NetworkManager.swift */; };
+		F296DE5E274401210049041E /* HashGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F296DE5D274401210049041E /* HashGenerator.swift */; };
 		F29C6852273EB23100F85F6E /* ImageDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29C6851273EB23100F85F6E /* ImageDataProvider.swift */; };
 /* End PBXBuildFile section */
 
@@ -33,12 +35,14 @@
 		F20B3F15273937EA00E41A2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F20B3F18273937EA00E41A2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F20B3F1A273937EA00E41A2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F20B3F20273944A100E41A2D /* MyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCollectionViewCell.swift; sourceTree = "<group>"; };
-		F20B3F21273944A100E41A2D /* MyCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyCollectionViewCell.xib; sourceTree = "<group>"; };
+		F20B3F20273944A100E41A2D /* CharacterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCollectionViewCell.swift; sourceTree = "<group>"; };
+		F20B3F21273944A100E41A2D /* CharacterCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterCollectionViewCell.xib; sourceTree = "<group>"; };
 		F20B3F24273972A200E41A2D /* CharactersData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersData.swift; sourceTree = "<group>"; };
 		F20B3F28273AC4C800E41A2D /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		F20B3F2F273C0C4700E41A2D /* ImageCacher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacher.swift; sourceTree = "<group>"; };
-		F20B3F33273C337100E41A2D /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		F20B3F33273C337100E41A2D /* CharacterDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsViewController.swift; sourceTree = "<group>"; };
+		F296DE5B2743F4EA0049041E /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		F296DE5D274401210049041E /* HashGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashGenerator.swift; sourceTree = "<group>"; };
 		F29C6851273EB23100F85F6E /* ImageDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDataProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -118,6 +122,8 @@
 				F20B3F28273AC4C800E41A2D /* ImageDownloader.swift */,
 				F20B3F2F273C0C4700E41A2D /* ImageCacher.swift */,
 				F29C6851273EB23100F85F6E /* ImageDataProvider.swift */,
+				F296DE5B2743F4EA0049041E /* NetworkManager.swift */,
+				F296DE5D274401210049041E /* HashGenerator.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -127,7 +133,7 @@
 			children = (
 				F29C684E273E893300F85F6E /* Views */,
 				F20B3F10273937E600E41A2D /* ViewController.swift */,
-				F20B3F33273C337100E41A2D /* DetailViewController.swift */,
+				F20B3F33273C337100E41A2D /* CharacterDetailsViewController.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -135,8 +141,8 @@
 		F29C684E273E893300F85F6E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F20B3F20273944A100E41A2D /* MyCollectionViewCell.swift */,
-				F20B3F21273944A100E41A2D /* MyCollectionViewCell.xib */,
+				F20B3F20273944A100E41A2D /* CharacterCollectionViewCell.swift */,
+				F20B3F21273944A100E41A2D /* CharacterCollectionViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -203,7 +209,7 @@
 			files = (
 				F20B3F19273937EA00E41A2D /* LaunchScreen.storyboard in Resources */,
 				F20B3F16273937EA00E41A2D /* Assets.xcassets in Resources */,
-				F20B3F23273944A100E41A2D /* MyCollectionViewCell.xib in Resources */,
+				F20B3F23273944A100E41A2D /* CharacterCollectionViewCell.xib in Resources */,
 				F20B3F14273937E600E41A2D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -257,14 +263,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F296DE5C2743F4EA0049041E /* NetworkManager.swift in Sources */,
 				F20B3F11273937E600E41A2D /* ViewController.swift in Sources */,
 				F20B3F0D273937E600E41A2D /* AppDelegate.swift in Sources */,
 				F29C6852273EB23100F85F6E /* ImageDataProvider.swift in Sources */,
 				F20B3F29273AC4C800E41A2D /* ImageDownloader.swift in Sources */,
-				F20B3F22273944A100E41A2D /* MyCollectionViewCell.swift in Sources */,
+				F20B3F22273944A100E41A2D /* CharacterCollectionViewCell.swift in Sources */,
 				F20B3F25273972A200E41A2D /* CharactersData.swift in Sources */,
+				F296DE5E274401210049041E /* HashGenerator.swift in Sources */,
 				F20B3F30273C0C4700E41A2D /* ImageCacher.swift in Sources */,
-				F20B3F34273C337100E41A2D /* DetailViewController.swift in Sources */,
+				F20B3F34273C337100E41A2D /* CharacterDetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

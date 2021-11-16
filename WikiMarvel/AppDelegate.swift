@@ -12,9 +12,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    private(set) var imageDataSource: ImageDataProvider!
+    private var imageDataSource: ImageDataProvider!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        let hashGenerator = HashGenerator()
+        let networkManager = NetworkManager(hashGenerator: hashGenerator)
+        networkManager.getChars()
+        
+        
+        
         
         let imageDownloader = ImageDownloader()
         let imageCacher = ImageCacher()

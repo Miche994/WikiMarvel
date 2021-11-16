@@ -9,7 +9,8 @@ import UIKit
 
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    private static let kSomeString = "You Tapped me!"
+    private static let kStoryBoardIdentifier = "Main"
+    private static let kViewControllerIdentifier = "ViewController"
     private static let cellWidth = 150
     private static let cellHeight = 200
     private static let horizontalInset: CGFloat = 20
@@ -23,7 +24,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
 
     
     public static func newInstance(dataSource: ImageDataSource) -> ViewController {
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ViewController") as! ViewController
+        let vc = UIStoryboard(name: Self.kStoryBoardIdentifier, bundle: nil).instantiateViewController(withIdentifier: Self.kViewControllerIdentifier) as! ViewController
         vc.imageDataSource = dataSource
         return vc
     }
@@ -32,7 +33,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView.register(MyCollectionViewCell.nib(), forCellWithReuseIdentifier: MyCollectionViewCell.identifier)
+        collectionView.register(CharacterCollectionViewCell.nib(), forCellWithReuseIdentifier: CharacterCollectionViewCell.kIdentifier)
         
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -51,16 +52,11 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        imageDataSource?.getMarvelImage(withURL: charactersList[indexPath.row].imageURL, completion: { image, error in
+        imageDataSource?.getMarvelImage(withURL: charactersList[indexPath.row].imageURL, completion: { [self] image, error in
             guard let image = image else { return }
             
-            /*guard let vc = self.storyboard?.instantiateViewController(withIdentifier: ViewController.detailViewControllerIdentifier) as? DetailViewController else {
-                return
-            }
-            
-            vc.configure(image: image, name: self.charactersList[indexPath.row].name, description: self.charactersList[indexPath.row].description)*/
-            
-            guard let vc = DetailViewController.newInstance(imageCharacter: image, nameCharacter: self.charactersList[indexPath.row].name, descriptionCharacter: self.charactersList[indexPath.row].description) else {
+
+            guard let vc = CharacterDetailsViewController.newInstance(characterImage: image, characterName: charactersList[indexPath.row].name, characterDescription: charactersList[indexPath.row].description) else {
                 return
             }
             self.navigationController?.pushViewController(vc, animated: true)
@@ -78,7 +74,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyCollectionViewCell.identifier, for: indexPath) as! MyCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CharacterCollectionViewCell.kIdentifier, for: indexPath) as! CharacterCollectionViewCell
         
         imageDataSource?.getMarvelImage(withURL: charactersList[indexPath.row].imageURL, completion: { image, error in
             guard let image = image else { return }
