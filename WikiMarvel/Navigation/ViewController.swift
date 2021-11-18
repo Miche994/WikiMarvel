@@ -11,10 +11,11 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     private static let kStoryBoardIdentifier = "Main"
     private static let kViewControllerIdentifier = "ViewController"
-    private static let cellWidth = 150
-    private static let cellHeight = 200
-    private static let horizontalInset: CGFloat = 20
-    private static let verticalInset: CGFloat = 10
+    private static let kCellWidth = 150
+    private static let kCellHeight = 200
+    private static let kHorizontalInset: CGFloat = 20
+    private static let kVerticalInset: CGFloat = 10
+    private static let kCollectionIndexPathOffset: Int = 20
     
     @IBOutlet private weak var collectionView: UICollectionView!
 
@@ -22,22 +23,21 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     private var networkManager: NetworkManager!
     
     //private let charactersList = MarvelCharacterDataSource().characters
-    private var charactersInformationsArray = [CharacterInformations]()  //?????????
+    private var charactersInformationsArray: [CharacterInformations]!
+    
     
     public static func newInstance(networkManager: NetworkManager) -> ViewController {
         let vc = UIStoryboard(name: Self.kStoryBoardIdentifier, bundle: nil).instantiateViewController(withIdentifier: Self.kViewControllerIdentifier) as! ViewController
         vc.networkManager = networkManager
+        vc.charactersInformationsArray = [CharacterInformations]()  //?????????
         return vc
+        
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-
-        
-        
-        
+    
         collectionView.register(CharacterCollectionViewCell.nib(), forCellWithReuseIdentifier: CharacterCollectionViewCell.kIdentifier)
         
         collectionView.delegate = self
@@ -45,12 +45,12 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
     
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: ViewController.cellWidth, height: ViewController.cellHeight)
+        layout.itemSize = CGSize(width: ViewController.kCellWidth, height: ViewController.kCellHeight)
         
         collectionView.collectionViewLayout = layout
-        collectionView!.contentInset = UIEdgeInsets(top: ViewController.verticalInset, left: ViewController.horizontalInset, bottom: ViewController.verticalInset, right: ViewController.horizontalInset)
+        collectionView!.contentInset = UIEdgeInsets(top: ViewController.kVerticalInset, left: ViewController.kHorizontalInset, bottom: ViewController.kVerticalInset, right: ViewController.kHorizontalInset)
         
-        updateUI()
+        loadCharactersWithOffset()
         
     }
     
@@ -78,40 +78,54 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CharacterCollectionViewCell.kIdentifier, for: indexPath) as! CharacterCollectionViewCell
         
+        if indexPath.row + Self.kCollectionIndexPathOffset == charactersInformationsArray.count {
+            loadCharactersWithOffset(startIndex: charactersInformationsArray.count)
+        }
+        
         cell.configure(urlString: makeUrlStringImage(thumbnail: charactersInformationsArray[indexPath.row].thumbnail), name: charactersInformationsArray[indexPath.row].name, description: charactersInformationsArray[indexPath.row].description)
             
         return cell
+        
     }
     
     
     // MARK: - UICollectionViewDelegateFlowLayout
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: ViewController.cellWidth, height: ViewController.cellHeight)
+        return CGSize(width: ViewController.kCellWidth, height: ViewController.kCellHeight)
+        
     }
     
     
-    func makeUrlStringImage(thumbnail: Thumbnail) -> String {       //  Where ?
-        return thumbnail.path + "/portrait_medium." + thumbnail.urlExtension
-    }
     
-    func updateUI() {
-        networkManager.getCharacters {
+    // MARK: - Characters loading functions
+
+    func loadCharactersWithOffset(startIndex: Int = 0) {
+        networkManager.getCharactersWithOffset(startIndex: startIndex) {
             charactersInformations, error in
+            
+            guard error == nil else {
+                print("\(error!)")
+                return
+            }
             
             guard !charactersInformations!.isEmpty else {
                 print("Loading data problem")
                 return
             }
             
-            self.charactersInformationsArray = charactersInformations!
-            //print(self.charactersInformationsArray!)
+            self.charactersInformationsArray += charactersInformations!
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
             }
-          
         }
         
     }
+    
+    func makeUrlStringImage(thumbnail: Thumbnail) -> String {       //  Where ??????
+        return thumbnail.path + "/portrait_medium." + thumbnail.urlExtension
+        
+    }
+    
 }
 

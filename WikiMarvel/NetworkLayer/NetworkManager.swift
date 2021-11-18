@@ -9,9 +9,10 @@ import Foundation
 
 class NetworkManager {
     
-    private static let kUrlString = "http://gateway.marvel.com/v1/public/characters"
+    private static let kUrlString = "http://gateway.marvel.com/v1/public/characters"  // All inside dictionary or enum ???
     private static let kQueryApiKeyName = "apikey"
     private static let kQueryHashName = "hash"
+    private static let kQueryOffsetName = "offset"
     private static let kQueryLimitName = "limit"
     private static let kQueryLimitValue = "100"
     private static let kQueryTimestampName = "ts"
@@ -25,9 +26,12 @@ class NetworkManager {
     }
     
     
-    func getCharacters(completion: @escaping ([CharacterInformations]?, Error?) -> Void) {
+    func getCharactersWithOffset(startIndex: Int = 0, completion: @escaping ([CharacterInformations]?, Error?) -> Void) {
+        let offsetQueryValue = String(startIndex)
+        
         let apiKeyQuery = URLQueryItem(name: Self.kQueryApiKeyName, value: HashGenerator.kPublicKey)
         let hashQuery = URLQueryItem(name: Self.kQueryHashName, value: hashGenerator.getHash())
+        let offsetQuery = URLQueryItem(name: Self.kQueryOffsetName, value: offsetQueryValue)
         let limitQuery = URLQueryItem(name: Self.kQueryLimitName, value: Self.kQueryLimitValue)
         let timeStampQuery = URLQueryItem(name: Self.kQueryTimestampName, value: hashGenerator.currentTimestamp)
         
@@ -36,7 +40,7 @@ class NetworkManager {
             return
         }
         
-        urlComponent.queryItems = [apiKeyQuery, timeStampQuery, hashQuery, limitQuery]
+        urlComponent.queryItems = [apiKeyQuery, timeStampQuery, hashQuery, limitQuery, offsetQuery]
         
         guard let url = urlComponent.url else {
             //let error = NSError(domain: someDomain, code: 401, userInfo: nil)
