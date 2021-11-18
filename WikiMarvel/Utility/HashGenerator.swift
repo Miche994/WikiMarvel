@@ -45,7 +45,6 @@ class HashGenerator {
         
         currentTimestamp = newTimestamp()  //???????
         
-        //let ts = newTimestamp()
         
         print("ts: \(currentTimestamp!)")
         let baseString = "\(currentTimestamp!)\(Self.kPrivateKey)\(Self.kPublicKey)"

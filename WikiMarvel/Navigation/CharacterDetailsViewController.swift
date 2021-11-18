@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class CharacterDetailsViewController: UIViewController {
     private static let kViewControllerIdentifier = "CharacterDetailsViewController"
@@ -14,13 +15,13 @@ class CharacterDetailsViewController: UIViewController {
     @IBOutlet private weak var characterNameLabel: UILabel!
     @IBOutlet private weak var characterDescriptionLabel: UILabel!
     
-    private var receivedCharacterImage: UIImage!
+    private var receivedImageUrl: String!
     private var receivedCharacterName: String!
     private var receivedCharacterDescription: String!
     
-    public static func newInstance(characterImage: UIImage, characterName: String, characterDescription: String) -> CharacterDetailsViewController? {
+    public static func newInstance(urlString: String, characterName: String, characterDescription: String) -> CharacterDetailsViewController? {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: Self.kViewControllerIdentifier) as! CharacterDetailsViewController
-        vc.receivedCharacterImage = characterImage
+        vc.receivedImageUrl = urlString
         vc.receivedCharacterName = characterName
         vc.receivedCharacterDescription = characterDescription
         return vc
@@ -28,7 +29,7 @@ class CharacterDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        characterImageView.image = receivedCharacterImage
+        characterImageView.sd_setImage(with: URL(string: receivedImageUrl))
         characterNameLabel.text = receivedCharacterName
         characterDescriptionLabel.text = receivedCharacterDescription
     }

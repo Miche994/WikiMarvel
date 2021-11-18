@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class CharacterCollectionViewCell: UICollectionViewCell {
     
@@ -30,8 +31,8 @@ class CharacterCollectionViewCell: UICollectionViewCell {
         layer.masksToBounds = true
     }
     
-    public func configure(with image: UIImage, name: String, description: String) {
-        imageView.image = image
+    public func configure(urlString: String, name: String, description: String) {
+        imageView.sd_setImage(with: URL(string: urlString))
         nameLabel.text = name
         descriptionCharacter = description
     }
